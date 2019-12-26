@@ -7,21 +7,29 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main"
-        tools:context=".ui.MainActivity">
-    <Switch
-            android:text="@string/switch_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/switch_camera"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="105dp"
-            app:layout_constraintTop_toBottomOf="@+id/textureView"/>
-    <TextureView
+        tools:context=".ui.MainActivity" tools:layout_editor_absoluteY="56dp">
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:id="@+id/textureView" android:layout_marginTop="16dp"
-            android:layout_marginBottom="61dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/switch_camera" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="29dp" android:layout_marginEnd="29dp"/>
+            android:id="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtContent"/>
+        <Button
+                android:text="Process"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button" tools:ignore="HardcodedText"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:contentDescription="codebarToScan"
+                tools:ignore="HardcodedText"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

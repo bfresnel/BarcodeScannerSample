@@ -1,43 +1,58 @@
 package com.bfr.barcodescannersample.ui;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Switch;
+import android.util.SparseArray;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import com.bfr.barcodescannersample.R;
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 public class MainActivity extends AppCompatActivity {
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        Switch switchCamera = findViewById(R.id.switch_camera);
+        Button button = (Button) findViewById(R.id.button);
+        final ImageView imageCodebar = (ImageView) findViewById(R.id.imageView);
+        final TextView textToDisplay = (TextView) findViewById(R.id.txtContent);
 
-    }
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Activate barcode detector
+                BarcodeDetector detector = new BarcodeDetector.Builder(getApplicationContext())
+                        .setBarcodeFormats(Barcode.DATA_MATRIX | Barcode.QR_CODE)
+                        .build();
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+                if (!detector.isOperational()){
+                    textToDisplay.setText("Unable to set the detector :(");
+                    return;
+                }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+                // Load image
+                Bitmap myBitmap = BitmapFactory.decodeResource(
+                        getApplicationContext().getResources(),
+                        R.drawable.puppy);
+                imageCodebar.setImageBitmap(myBitmap);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+                // Detect the barcode
+                Frame frame = new Frame.Builder().setBitmap(myBitmap).build();
+                SparseArray<Barcode> barcodes = detector.detect(frame);
 
-        return super.onOptionsItemSelected(item);
+                // Decode the barcode
+                Barcode thisCode = barcodes.valueAt(0);
+                textToDisplay.setText(thisCode.rawValue);
+            }
+        });
     }
 }
