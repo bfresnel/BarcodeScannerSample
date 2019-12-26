@@ -125,7 +125,7 @@ public class CameraActivity extends AppCompatActivity {
                 if (cameraCharacteristics.get(CameraCharacteristics.LENS_FACING) == cameraFacing) {
                     StreamConfigurationMap streamConfigurationMap =
                             cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-                    previewSize = streamConfigurationMap.getOutputSizes(SurfaceTexture.class);
+                    Size[] previewSize = streamConfigurationMap.getOutputSizes(SurfaceTexture.class);
                     this.cameraId = cameraId;
                 }
             }
