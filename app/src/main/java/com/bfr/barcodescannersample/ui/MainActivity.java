@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 // Load image
                 Bitmap myBitmap = BitmapFactory.decodeResource(
                         getApplicationContext().getResources(),
-                        R.drawable.puppy);
+                        R.drawable.generate);
                 imageCodebar.setImageBitmap(myBitmap);
 
                 // Detect the barcode
