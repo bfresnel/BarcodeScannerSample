@@ -1,4 +1,4 @@
-package com.bfr.barcodescannersample;
+package com.bfr.barcodescannersample.ui;
 
 import android.Manifest;
 import android.content.Context;
@@ -13,9 +13,12 @@ import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.Window;
+import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import com.bfr.barcodescannersample.R;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -41,6 +44,8 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getSupportActionBar().hide();
         setContentView(R.layout.activity_camera);
         textureView = (TextureView) findViewById(R.id.textureViewCamera);
 
