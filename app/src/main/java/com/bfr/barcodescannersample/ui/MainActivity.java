@@ -1,6 +1,7 @@
 package com.bfr.barcodescannersample.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.bfr.barcodescannersample.CameraActivity;
 import com.bfr.barcodescannersample.R;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.button);
+        Button buttonCamera = (Button) findViewById(R.id.buttonCamera);
         final ImageView imageCodebar = (ImageView) findViewById(R.id.imageView);
         final TextView textToDisplay = (TextView) findViewById(R.id.txtContent);
 
@@ -52,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
                 // Decode the barcode
                 Barcode thisCode = barcodes.valueAt(0);
                 textToDisplay.setText(thisCode.rawValue);
+            }
+        });
+
+        buttonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cameraView = new Intent(getApplicationContext(), CameraActivity.class);
+                startActivity(cameraView);
             }
         });
     }
