@@ -1,5 +1,6 @@
 package com.bfr.barcodescannersample.ui;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
 public class CodebarActivity extends AppCompatActivity implements ZBarScannerView.ResultHandler {
     private ZBarScannerView scannerView;
+    private boolean alertDisplayed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +35,20 @@ public class CodebarActivity extends AppCompatActivity implements ZBarScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(rawResult.getContents())
-                .setTitle("Result");
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        if (!alertDisplayed){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(rawResult.getContents())
+                    .setTitle("Result")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            alertDisplayed = true;
+        }
         scannerView.resumeCameraPreview(this);
     }
 }
