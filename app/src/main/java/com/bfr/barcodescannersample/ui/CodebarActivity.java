@@ -1,6 +1,7 @@
 package com.bfr.barcodescannersample.ui;
 
 import android.os.Bundle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
@@ -12,6 +13,7 @@ public class CodebarActivity extends AppCompatActivity implements ZBarScannerVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scannerView = new ZBarScannerView(this);
+
         setContentView(scannerView);
 
     }
@@ -31,7 +33,11 @@ public class CodebarActivity extends AppCompatActivity implements ZBarScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
-        // If you would like to resume scanning, call this method below:
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(rawResult.getContents())
+                .setTitle("Result");
+        AlertDialog dialog = builder.create();
+        dialog.show();
         scannerView.resumeCameraPreview(this);
     }
 }

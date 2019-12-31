@@ -15,7 +15,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.CodebarActivity">
+        <activity android:name=".ui.CodebarActivity"
+            android:theme="@style/Theme.AppCompat">
         </activity>
         <activity android:name=".ui.CameraActivity">
         </activity>
