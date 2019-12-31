@@ -14,7 +14,6 @@ import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.Window;
-import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -25,21 +24,24 @@ import java.util.Collections;
 
 public class CameraActivity extends AppCompatActivity {
 
-    public CameraManager cameraManager;
-    public int cameraFacing;
-    private static final int CAMERA_REQUEST_CODE = 2000;
-    private static final String TAG = "CameraActivity";
+    private CameraManager cameraManager;
+    private int cameraFacing;
+
     private String cameraId;
     private Handler backgroundHandler;
     private CameraDevice.StateCallback stateCallback;
+    private CameraCaptureSession cameraCaptureSession;
+    private HandlerThread backgroundThread;
+    private CaptureRequest captureRequest;
+
+    protected Size previewSize;
+    protected CaptureRequest.Builder captureRequestBuilder;
     protected CameraDevice cameraDevice;
     protected TextureView textureView;
     protected TextureView.SurfaceTextureListener surfaceTextureListener;
-    private CameraCaptureSession cameraCaptureSession;
-    private HandlerThread backgroundThread;
-    protected Size previewSize;
-    protected CaptureRequest.Builder captureRequestBuilder;
-    private CaptureRequest captureRequest;
+
+    private static final int CAMERA_REQUEST_CODE = 2000;
+    private static final String TAG = "CameraActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
