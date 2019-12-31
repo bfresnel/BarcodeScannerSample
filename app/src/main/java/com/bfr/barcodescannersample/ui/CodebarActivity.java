@@ -35,7 +35,7 @@ public class CodebarActivity extends AppCompatActivity implements ZBarScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
-        if (!alertDisplayed){
+        if (!alertDisplayed) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(rawResult.getContents())
                     .setTitle("Result")
@@ -47,6 +47,7 @@ public class CodebarActivity extends AppCompatActivity implements ZBarScannerVie
                         }
                     });
             AlertDialog dialog = builder.create();
+            dialog.setCanceledOnTouchOutside(false);
             dialog.show();
             alertDisplayed = true;
         }
