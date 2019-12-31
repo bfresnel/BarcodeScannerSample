@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button buttonBarcode = (Button) findViewById(R.id.buttonBarcode);
         Button buttonCamera = (Button) findViewById(R.id.buttonCamera);
 
         buttonCamera.setOnClickListener(new View.OnClickListener() {
@@ -22,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent cameraView = new Intent(getApplicationContext(), CameraActivity.class);
                 startActivity(cameraView);
+            }
+        });
+
+        buttonBarcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent barcodeView = new Intent(getApplicationContext(), CodebarActivity.class);
+                startActivity(barcodeView) ;
             }
         });
     }

@@ -19,5 +19,9 @@
                 android:text="Activate camera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/buttonCamera" tools:ignore="HardcodedText"/>
+        <Button
+                android:text="Barcode reader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/buttonBarcode"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
