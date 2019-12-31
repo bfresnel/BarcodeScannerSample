@@ -15,22 +15,6 @@
             android:id="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent">
-        <TextView
-                android:text=""
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtContent"/>
-        <Button
-                android:text="Process"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/button" tools:ignore="HardcodedText"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView"
-                android:contentDescription="codebarToScan"
-                tools:ignore="HardcodedText"/>
         <Button
                 android:text="Activate camera"
                 android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.*;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -15,6 +16,7 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.Window;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import com.bfr.barcodescannersample.R;
@@ -42,7 +44,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST_CODE = 2000;
     private static final String TAG = "CameraActivity";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
