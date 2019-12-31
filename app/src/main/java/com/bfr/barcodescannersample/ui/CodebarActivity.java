@@ -43,6 +43,7 @@ public class CodebarActivity extends AppCompatActivity implements ZBarScannerVie
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
+                            alertDisplayed = false;
                         }
                     });
             AlertDialog dialog = builder.create();
